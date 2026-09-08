@@ -14,7 +14,7 @@
    ========================================================================= */
 
 const LIVE_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRbAKbgaXoj-ImKU3td8BIuvi1fM1nXXSXdoD8nTaUQeAISb-xMGb0wp1R1rUcHmzIQFf3XlSb_9yK8/pub?output=csv";
-const LIVE_MONTH_LABEL = "Sep 26";
+const LIVE_MONTH_LABEL = "Sep'26";
 const REFRESH_MS = 5 * 60 * 1000;
 
 const CATEGORY_ORDER = [
