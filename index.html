@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Maybell Staff-Wise Sales Performance Dashboard" />
+<title>Maybell — Staff Performance</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HERO / MASTHEAD -->
+  <header class="masthead">
+    <div class="masthead-left">
+      <div class="mark">MAYBELL</div>
+      <h1>Staff-wise sales floor</h1>
+      <p class="sub">Target vs achievement, store by store, staff by staff.</p>
+    </div>
+    <div class="masthead-right">
+      <div id="pulse" class="pulse pulse-loading">
+        <span class="pulse-dot"></span>
+        <span class="pulse-text">Connecting…</span>
+      </div>
+      <button id="refreshBtn" class="ghost-btn" title="Refresh live data">Refresh</button>
+    </div>
+  </header>
+
+  <!-- SLICERS -->
+  <section class="slicers">
+    <div class="slicer">
+      <label for="quarterSelect">Quarter</label>
+      <select id="quarterSelect"></select>
+    </div>
+    <div class="slicer">
+      <label for="monthSelect">Month</label>
+      <select id="monthSelect"></select>
+    </div>
+    <div class="slicer">
+      <label for="storeSelect">Store</label>
+      <select id="storeSelect"></select>
+    </div>
+    <div class="slicer-meta">
+      <span id="recordCount">—</span>
+    </div>
+  </section>
+
+  <!-- KPI CARDS -->
+  <section class="kpi-row" id="kpiRow"></section>
+
+  <!-- CHARTS -->
+  <section class="charts-row">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Week-wise target vs achieved</h2>
+        <span class="panel-note">₹ across selected scope</span>
+      </div>
+      <canvas id="weeklyChart" height="230"></canvas>
+    </div>
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Category-wise quantity</h2>
+        <span class="panel-note">units sold</span>
+      </div>
+      <canvas id="categoryChart" height="230"></canvas>
+    </div>
+  </section>
+
+  <!-- STAFF MATRIX + CATEGORY-BY-STAFF -->
+  <section class="matrix-row">
+    <div class="panel matrix-panel">
+      <div class="panel-head">
+        <h2>Staff performance matrix</h2>
+        <div class="matrix-tools">
+          <input id="staffSearch" type="text" placeholder="Search staff or store…" />
+          <span class="panel-note" id="matrixCount"></span>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table id="matrixTable">
+          <thead>
+            <tr>
+              <th data-key="store">Store</th>
+              <th data-key="staff">Staff</th>
+              <th data-key="grossTarget" class="num">Target</th>
+              <th data-key="totalSales" class="num">Sales</th>
+              <th data-key="achievement" class="num">Ach %</th>
+              <th data-key="qty" class="num">Qty</th>
+              <th data-key="nob" class="num">NOB</th>
+              <th data-key="atv" class="num">ATV</th>
+              <th data-key="bs" class="num">BS</th>
+              <th class="num">WK1</th>
+              <th class="num">WK2</th>
+              <th class="num">WK3</th>
+              <th class="num">WK4</th>
+              <th class="num">WK5</th>
+            </tr>
+          </thead>
+          <tbody id="matrixBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel staff-category-panel">
+      <div class="panel-head">
+        <h2>Category sale — staff wise</h2>
+        <span class="panel-note">₹ · same store/search scope as matrix</span>
+      </div>
+      <div class="staff-category-scroll" id="staffCategoryChartWrap">
+        <canvas id="staffCategoryChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Maybell Staff Performance Dashboard — <span id="footerMonth"></span>
+    <span id="footerUpdated"></span>
+  </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
